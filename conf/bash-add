@@ -1,0 +1,55 @@
+#########################################################
+#########    ADDED BY USER
+#########################################################
+
+#  Include bash alias file:
+[[ -f ~/.balias ]] && . ~/.balias
+
+#  Include functions:
+[[ -f ~/.bash_functions ]] && . ~/.bash_functions
+
+#  Add to $PATH:
+if [ -d "$HOME/bin" ] ;
+  then PATH="$HOME/bin:$PATH"         #for ~/bin
+fi
+
+if [ -d "$HOME/helpers" ] ;
+  then PATH="$HOME/helpers:$PATH"    #for ~/helpers
+fi
+
+HISTSIZE=1500 # History length
+HISTFILESIZE=2000 # history file lgth
+
+# Editor and Pager
+#-----------------------------------------------
+EDITOR="micro"
+export EDITOR
+
+PAGER="most"
+MANPAGER="$PAGER"
+export PAGER MANPAGER
+
+#export TERM=xterm-256color
+
+#Git auto-complete
+if [ -f ~/.git-completion.bash ]; then
+    source ~/.git-completion.bash
+fi
+####   PS1  SETUPs  ##################################
+
+## BASH_PROMPT:
+
+### Load & combine 3 dotfiles, and have nice prompt w/git
+#for file in ~/.{bash_prompt,balias,bash_functions,}; do
+#  [ -r "$file" ] && [ -f "$file" ] && source "$file";
+#done;
+#unset file;
+#-------------------------------------------------\\\
+
+##     starship prompt    ############################
+## install: curl -fsSL https://starship.rs/install.sh | bash
+## to uninstall: $rm "$(which starship)"
+  
+eval "$(starship init bash)"
+
+#fetch2

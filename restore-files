@@ -1,0 +1,45 @@
+#!/bin/bash
+
+#    **** FOR LINUXMINT DISTRO *****
+
+#	script to restore home files after distro install
+###################################################################
+
+tput setaf 11
+echo "================================"
+echo "Restoring home files for user."
+echo "================================"
+tput sgr0
+
+## create needed folders
+[ -d $HOME"/backgrounds" ] || mkdir -p $HOME"/backgrounds"
+[ -d $HOME"/helpers" ] || mkdir -p $HOME"/helpers"
+[ -d $HOME"/.config/geany" ] || mkdir -p $HOME"/.config/geany"
+[ -d $HOME"/.config/micro" ] || mkdir -p $HOME"/.config/micro"
+[ -d $HOME"/.config/sakura" ] || mkdir -p $HOME"/.config/sakura"
+#[ -d $HOME"/.config/xfce4" ] || mkdir -p $HOME"/.config/xfce4"
+
+##	copy some home dotfiles
+#rsync -av /media/whw/Data1/linuxmint/.{balias,bashrc,bash_functions,} $HOME/
+rsync -av /media/whw/Data1/linuxmint/bin/ $HOME/bin/
+
+##	to HOME folders
+rsync -av /media/whw/Data1/linuxmint/backgrounds/ $HOME/backgrounds/
+rsync -av /media/whw/Data1/linuxmint/Documents/ $HOME/Documents/
+rsync -av /media/whw/Data1/linuxmint/helpers/ $HOME/helpers/
+#rsync -av /media/whw/Data1/linuxmint/.vim/ $HOME/.vim/
+
+##  config folders
+rsync -av /media/whw/Data1/linuxmint/.config/geany/ $HOME/.config/geany/
+#rsync -av /media/whw/Data1/linuxmint/.config/micro/ $HOME/.config/micro/
+#rsync -av /media/whw/Data1/linuxmint/.config/nvim/ $HOME/.config/nvim/
+
+##  for terminals & prompt
+rsync -av /media/whw/Data1/linuxmint/.config/starship.toml $HOME/.config/
+#rsync -av /media/whw/Data1/linuxmint/.config/Thunar/ $HOME/.config/Thunar/
+
+tput setaf 14
+echo "#####################################"
+echo "###     Restored Files Done      ####"
+echo "#####################################"
+tput sgr0

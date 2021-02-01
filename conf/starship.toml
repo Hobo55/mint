@@ -1,0 +1,108 @@
+## ~/.config/starship.toml 
+
+##  Colors
+#    red:     #f07178, #ff8b92, #a0f005f, 125
+#    green:   #c3e88d, #ddffa7, #5fffaf, 85
+#    yellow:  #ffcb6b, #ffe585, 
+#    blue:    #82aaff, #9cc4ff, #0087d7,33,24,68,74 
+#    magenta: #c792ea, #e1acff, 
+#    cyan:    #89ddff, #a3f7ff, #00afaf,37
+#    orange   #d75f00, 166
+#    violet   #5f5faf,  61
+#    purple   #af005f, 99,125
+#    gray     #5f5f5f
+
+## Don't print a new line at the start of the prompt
+add_newline = true
+
+## single line only
+#[line_break]
+#disabled= false
+
+##    Order of modules on prompt:     ===================================
+##    add modules above line break to show above prompt input
+
+#format = """
+#$line_break\
+# (↓ on input line ↓)\
+#$cmd_duration\
+#$character\
+#"""
+##=======================================================================
+
+## Replace the "❯" symbol in the prompt with "❯❯"
+[character]
+success_symbol = " [❯❯](bold yellow)"
+error_symbol = " [✗](bold red)"
+
+## Disable the package module, hiding it from the prompt completely
+[package]
+disabled = true
+
+## Set the time format
+[time]
+disabled = true
+time_format = "%H:%M"
+utc_time_offset = "+10"
+
+    # Directory setttings
+[directory]
+format = " [$path](bold italic fg:#89ddff)($style)[$read_only]($read_only_style) "
+#format = "[dir](bold 166) [$path](bold italic fg:72)($style)[$read_only]($read_only_style) "
+truncation_length = 4
+truncate_to_repo = false
+truncation_symbol = "…/"
+read_only = "🔒"
+
+[username]
+disabled = true
+format = "[$user]($style) [@](bold white) "
+style_user = "33"
+style_root = "red bold"
+show_always = true
+
+[hostname]
+disabled = false
+format =  "[$hostname](bold 166)"
+ssh_only = false
+
+[git_branch]
+disabled = false
+format = "[on](bold italic white) [$symbol$branch]($style)"
+#format = "git [$symbol$branch]($style)"
+symbol = " "
+truncation_length = 4
+truncation_symbol = "../"
+style = "bold italic fg:99"
+
+[git_status]
+disabled = false
+format = '( [\[$modified$untracked$staged$renamed$deleted$ahead_behind\]](bold fg:166) )'
+modified = "!"
+untracked = "?"
+staged = "+"
+renamed = ">>"
+deleted = "✘"
+style = "(bold red)"
+
+[git_state]
+progress_divider = "of "
+
+[cmd_duration]
+#min_time = 4
+show_milliseconds = false
+disabled = false
+format = "  ⏲ [$duration]($style) "
+style = "bold italic #87A752"
+
+[python]
+format = "[$symbol$version]($style) "
+style = "189"
+
+[java]
+format = "[$symbol$version]($style) "
+style = "189"
+
+[rust]
+format = "[$symbol$version]($style) "
+style = "189"

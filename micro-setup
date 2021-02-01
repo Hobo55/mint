@@ -1,0 +1,38 @@
+#!/bin/bash
+
+####### 	to set up micro before restore
+
+## Install micro pkg from debian backports (not in stable)
+
+## You can add repo for backport :
+## sudo apt-get install -t buster-backports <packagename>
+	if dpkg-query -s micro &> /dev/null; then
+		tput setaf 2
+  		echo "   The package micro is already installed   "
+      	      	echo
+		tput sgr0
+	else
+    	tput setaf 3
+    	echo "    Installing micro pkg     "
+    	echo
+    	tput sgr0
+    	sudo apt-get install -y micro
+   fi
+
+## if no dir- make one
+[ -d $HOME"/.config/micro" ] || mkdir -p $HOME"/.config/micro"
+
+## copy file to $HOME
+rsync -av conf/micro/ $HOME/.config/micro/
+
+##	aliases to .bashrc
+#echo "Micro aliases" >> $HOME/.bashrc
+#echo "-----------------" >> $HOME/.bashrc
+#echo "alias m='micro'" >> $HOME/.bashrc
+#echo "alias edmicro='micro .config/micro/settings.json'" >> $HOME/.bashrc
+
+tput setaf 14
+echo "**********************************"
+echo "*****   Micro setup done.  *******"
+echo "**********************************"
+tput sgr0

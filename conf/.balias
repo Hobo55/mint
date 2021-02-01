@@ -1,0 +1,170 @@
+##################  ALIASES  ############################################
+# Personal bash aliases
+###########################################################
+##  MX LINUX PLASMA
+##########################################################
+ 
+#		TERMINAL MISC
+#############################################
+#   Helpful reminders & safetynets
+alias rm='rm -iv'
+#alias cp='cp -iv'
+alias mv='mv -iv'
+
+#   misc
+#alias grep='grep --color=auto -n'
+alias al='alias | most'
+alias j='jobs'
+alias mkdir='mkdir -pv'
+alias c='clear'
+alias r='source .bashrc'
+
+# navigate
+alias ..='cd ..' 
+alias ...='cd ../..'
+alias .3='cd ../../..'
+
+#      FILES
+#############################################
+alias ls='ls -AhNp --color=auto --group-directories-first'
+#alias ls='ls --color=auto'
+
+#	for exa (alt ls util):
+alias l='exa -a --color=always --group-directories-first'
+alias ll='exa -al --color=always --group-directories-first'
+alias lsize='exa -a --reverse --sort=size'
+#alias lsize='exa -a --sort=size'
+alias lt='exa -aT --color=always --group-directories-first | most' # tree listing
+alias l.='exa -a | egrep "^\."'
+
+#	BACKUP select dotfiles as edited
+alias save-dotfiles='source bin/dotfiles.sh'
+alias backup-skel='cp -Rf /etc/skel ~/.skel-backup-$(date +%m.%d-%Y)'
+
+#    EDITING FILES
+#################################################
+alias v='vim'
+#alias edvim='vim .vimrc'
+alias n='nvim'
+editor="nvim"          #<- variable for editor
+alias edbash='$editor .bashrc'
+alias edalias='$editor .balias'
+alias edmicro='$editor ~/.config/micro/settings.json'
+alias edvim='$editor .vimrc'
+alias edxresource='$editor .Xresources'
+alias edzsh='$editor .zshrc'
+
+#   with micro
+alias m='micro'
+alias todo='micro Documents/todo.txt'
+alias notes='micro Documents/note.txt'
+alias dnotes='micro Documents/d-note.txt'
+alias edstrshp='micro .config/starship.toml'
+#alias fam-info='micro Documents/family-tree.txt'
+
+# Edit files sudo:
+alias mgrub="sudo micro /etc/default/grub"
+alias mlightdm='sudo micro /etc/lightdm/lightdm.conf'
+alias mssh='sudo micro /etc/ssh/ssh_config'
+
+#  python
+alias p='python3'
+#alias nano='nano -l'
+alias theme='. ~/helpers/color-themes'
+
+#	after editing .Xresources
+alias xre='xrdb -merge ~/.Xresources'
+
+#	  Apt SOFTWARE MANAGMENT:
+############################################################
+
+#	update
+alias update='sudo apt update && sudo apt upgrade -y'
+#	install pkgs
+alias getpkg='sudo apt install'
+#	list installed pkgs
+alias list-pkgs='sudo apt list'
+#	get installed pkg info
+alias pkgi='sudo apt show'
+#	remove pkg
+alias rmpkg='sudo apt remove'
+alias purgepkg='sudo apt purge'
+#	search repo for pkg
+alias findpkg='sudo apt search'
+#--------------------------------------------------------\\\
+
+#      Programs/scripts
+###########################################################
+#		arch-wiki-lite
+# Ex: wiki <name searched>
+alias wiki='wiki-search'
+
+#      manpage-search/ macho man
+alias mp='macho'
+alias macho='./bin/macho.sh'
+
+#      scripts to show terminal colors
+alias colors='source bin/termcolors'
+alias 256='source bin/print256'
+#===============================
+
+#		Git
+##########################################
+alias gs='git status'
+alias ga='git add -A'
+alias gc='git commit'
+alias gd='git diff'
+alias gp='git push -u origin'
+alias gco='git checkout' #<branch>
+
+##	Git Push-script
+#alias git-push='. ~/bin/git-push.sh'
+
+## for Git --bare repo
+#alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+
+#		ADMIN
+############################################
+alias dmesg='dmesg -HL'
+alias watch='watch -d'
+alias diff='colordiff'
+#alias chown='chown --preserve root'
+#alias chmod='chmod --preserve root'
+#alias chgrp='chgrp --preserve root'
+
+#	send a file to Trash
+alias trash='mv --force -t ~/.local/share/Trash '
+
+#   ps
+alias psa="ps -auxf"
+
+#	Get top process eating memory
+alias Mem5='ps -auxf | sort -nr -k 4 | head -5'
+alias Mem10='ps -auxf | sort -nr -k 4 | head -10'
+
+#	List largest directories (aka "ducks")
+alias dir5='du -cksh * | sort -hr | head -n 5'
+alias dir10='du -cksh * | sort -hr | head -n 10'
+
+#	lightdm- list greeters
+alias greeters='ls -l /usr/share/xgreeters/'
+
+#	partitions ??
+alias parts='lsblk --fs'
+
+#	systemctl
+alias service='sudo systemctl list-unit-files'
+alias release='cat /etc/lsb-release'
+
+#   userlist
+alias userlist="cut -d: -f1 /etc/passwd"
+
+#		WEB  NETWORKING
+#############################################
+#	cheat.sh from chubin, github
+alias cheat='curl cheat.sh'
+alias chthelp='curl cheat.sh/:help'
+#	get external ip address
+alias ipe='curl ipinfo.io/ip'
+#   continue download
+alias wget="wget -c"

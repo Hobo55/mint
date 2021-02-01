@@ -1,0 +1,8 @@
+#!/bin/bash
+# menu for archbase modified to work in ~/.local/bin
+
+cd archbase
+
+source start-here
+
+cd $HOME

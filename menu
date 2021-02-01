@@ -1,0 +1,99 @@
+#!/bin/bash
+
+## CLI Menu for Linux Mint repo
+
+## choices
+packages() {
+  tput setaf 3
+  echo ""
+  echo "  Install Packages  "
+  tput sgr0
+  ./install-pkgs
+}
+
+micro() {
+  tput setaf 3
+  echo ""
+  echo "  Micro Setup "
+  tput sgr0
+  ./micro-setup
+}
+
+neovim() {
+  tput setaf 3
+  echo ""
+  echo "  Setup neovim "
+  tput sgr0
+  ./neovim-setup
+}
+
+bash() {
+  tput setaf 3
+  echo ""
+  echo " Setup Bash"
+  tput sgr0
+  ./bash-setup
+}
+
+restore() {
+  tput setaf 3
+  echo ""
+  echo "  Restore Files  "
+  tput sgr0
+  ./restore-files
+}
+
+apt() {
+  tput setaf 3
+  echo ""
+  echo "  View some apt commands  "
+  tput sgr0
+  less pkg-help.txt
+}
+
+press_enter() {
+  tput setaf 3
+  echo ""
+  echo -n "  Press Enter to continue "
+  tput sgr0
+  read
+  clear
+}
+
+incorrect_selection() {
+  tput setaf 1
+  echo ""
+  echo ""
+  echo "      #######################"
+  echo "         ERROR! Try again.   "
+  echo "      #######################"
+  tput sgr0
+}
+
+until [ "$selection" = "0" ]; do
+  clear
+tput setaf 3
+  echo ""
+  echo "    1  -  Install Packages "
+  echo "    2  -  Setup Micro "
+  echo "    3  -  Setup Neovim "
+  echo "    4  -  Setup Bashrc "
+  echo "    5  -  Restore Files"
+  echo "    6  -  Apt Commands "  
+  echo "    0  -  Exit"
+  echo ""
+  echo -n  "  Enter selection: "
+  read selection
+  echo ""
+tput sgr0
+  case $selection in
+    1 ) clear ; packages ; press_enter ;;
+    2 ) clear ; micro ; press_enter ;;
+    3 ) clear ; neovim ; press_enter ;;
+    4 ) clear ; bash ; press_enter ;;
+    5 ) clear ; restore ; press_enter ;;
+    6 ) clear ; apt ; press_enter ;;
+    0 ) clear ; exit ;;
+    * ) clear ; incorrect_selection ; press_enter ;;
+  esac
+done

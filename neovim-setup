@@ -1,0 +1,23 @@
+#!/bin/bash
+
+#	Set up ~/.config/nvim before restore
+
+# test for .config/nvim - if not, make one.
+[ -d $HOME"/.config/nvim" ] || mkdir -p $HOME"/.config/nvim"
+
+# Copy neovim files to $HOME:
+rsync -av conf/nvim/ $HOME/.config/nvim/
+#rsync -av conf/.vim/ $HOME/.config/.vim/
+
+#	write aliases to .bashrc
+#echo "Aliases added by user" >> $HOME/.bashrc
+#echo "alias r='source .bashrc'" >> $HOME/.bashrc
+#echo "alias c='clear;ls'" >> $HOME/.bashrc
+#echo "alias ls='ls -ahN --color=auto --group-directories-first'" >> $HOME/.bashrc
+#echo "alias nv='nvim'" >> $HOME/.bashrc
+
+tput setaf 14
+echo "-----------------------"
+echo "  Neovim setup done.   "
+echo "---------------------- "
+tput sgr0

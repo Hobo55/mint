@@ -1,0 +1,30 @@
+#!/bin/bash
+
+## setup menu command in Linux Mint $HOME/.local/bin
+############################################################
+
+## check that folder is in place
+[ -d $HOME"/.local/bin" ] || mkdir -p $HOME"/.local/bin"
+
+## copy "menu" script to folder in distro
+cp -arf conf/menu-bin $HOME/.local/bin/
+
+##  add menu alias to bashrc
+echo "########################################" >> $HOME/.bashrc
+echo "## Menu-bin alias" >> $HOME/.bashrc
+echo "alias menu='menu-bin'" >> $HOME/.bashrc
+echo "########################################" >> $HOME/.bashrc
+
+## use all cores in building pkgs
+#./helpers/use-all-cores-makepkg-conf
+
+## update Linux Mint distro
+sudo apt update && sudo apt upgrade -y
+
+## Reboot
+tput setaf 6;echo "";echo ""
+echo "****************************"
+echo "     TIME TO REBOOT OS      "
+echo "****************************"
+sleep 3
+sudo reboot

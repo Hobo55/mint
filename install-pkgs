@@ -1,0 +1,125 @@
+#!/bin/bash
+#set -e
+# Install pkgs for MX Plasma
+func_install() {
+	if dpkg-query -s $1 &> /dev/null; then
+		tput setaf 2
+  		echo "#########################################################"
+  		echo "########  The package "$1" is already installed"
+      	echo "#########################################################"
+      	echo
+		tput sgr0
+	else
+    	tput setaf 3
+    	echo "#########################################################"
+    	echo "########     Installing package "  $1
+    	echo "#########################################################"
+    	echo
+    	tput sgr0
+    	sudo apt-get install -y $1
+    fi
+}
+
+func_category() {
+	tput setaf 5;
+	echo "#############################################################"
+	echo "Installing software for category " $1
+	echo "#############################################################"
+	echo;tput sgr0
+}
+########################################################################
+func_category CLI
+
+list=(
+curl               # transfer data w/URL syntax
+#exa                # ls alt
+#feh                # image viewer for tmn
+fzf                # fuzzy finder
+git                # version control for repos
+hwinfo             # hardware id system
+imv                # image viewer
+micro              # nano alt text editor
+mlocate            # file finder based on their name
+most               # pager less alt
+neovim
+neovim-runtime
+nomacs
+nvme-cli          # tool to control nvme drives
+ncdu              # ncurses disk usage viewer
+rsync             # file-copy tool
+sakura            # terminal emulator
+terminator        # terminal emulator
+trash-cli         # terminal trash can
+tree              # display dir tree
+#w3m               # webrowser- pager
+#unclutter         # clear mouse in tiling mw
+wget              # retrieve files from websites
+xdo               # util to perform actions on windows in x
+#vim
+)
+
+count=0
+for name in "${list[@]}" ; do
+	count=$[count+1]
+	tput setaf 3;echo "Installing package nr.  "$count " " $name;tput sgr0;
+	func_install $name
+done
+
+########################################################################
+func_category Editors
+
+list=(
+meld              # compare files editor
+geany
+#kate             # kde editor
+)
+
+count=0
+for name in "${list[@]}" ; do
+	count=$[count+1]
+	tput setaf 3;echo "Installing package nr.  "$count " " $name;tput sgr0;
+	func_install $name
+done
+
+########################################################################
+func_category Utils
+
+list=(
+grsync             # backup files
+mintstick          # write image/.iso files to usb
+rofi               #window switcher
+gufw               # firewall GUI
+timeshift          # backup system
+)
+
+count=0
+for name in "${list[@]}" ; do
+	count=$[count+1]
+	tput setaf 3;echo "Installing package nr.  "$count " " $name;tput sgr0;
+	func_install $name
+done
+########################################################################
+tput setaf 11;
+echo "################################################"
+echo "          Software has been installed           "
+echo "################################################"
+echo;tput sgr0
+
+##        If above doesn't work 
+## for cli
+#sudo apt-get install exa
+#sudo apt-get install fzf
+#sudo apt-get install meld
+#sudo apt-get install most
+#sudo apt-get install neovim
+#sudo apt-get install neovim-runtime
+#sudo apt-get install ncdu
+#sudo apt-get install rsync
+#sudo apt-get install vim
+
+##  editors
+#sudo apt-get install geany
+#sudo apt-get install kate
+
+##  backup GUI util
+#sudo apt-get install grsync

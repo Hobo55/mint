@@ -1,0 +1,94 @@
+
+## Some apt commands
+
+*** Debian Notes  **********************
+
+# Package commands
+
+* sudo apt update  - update pkg database
+
+* sudo apt upgrade - upgrade installed pkgs
+
+    do both by :
+   sudo apt update && sudo apt upgrade -y
+
+* sudo apt full-upgrade - will remove uneeded pkgs
+
+* do not upgrade a specific pkg
+sudo apt install <package_name> --no-upgrade
+
+* sudo apt remove <package_name> - remove pkg
+  Another way of uninstalling packages is to use purge.
+   The command is used in the following manner:
+* sudo apt purge <package_name> - removes conf files
+* sudo apt autoremove - cleanup pkg orphans
+
+* apt search <search term> - search for pkg
+  regex: ex- v.\* OR n\* 
+
+* apt show <package_name> - show contents of pkg
+
+* apt list --upgradeable - show pkgs ready for upgrade
+* apt list --installed   - show all pkgs on ur sys
+* apt list --all-versions - all pkgs available for ur sys
+- sudo apt list --installed # list installed pkgs
+  "    "   "          "     | grep <pkg name>
+- sudo dpkg-query -l | less # list pkgs (older)
+apt-cache show, apt-cache search <keyword>
+ apt-cache pkgnames #list all avail pkgs in repos
+ "     ""    "     <pkgname> # single pkg
+
+# older versions: list pkgs to a file
+- sudo dpkg-query -f '${binary:Package}\n' -W > pkgs-list.txt
+   "     "   "       "         "         " -W | wc -l # num/pkgs
+
+# u can install list from file to new server/distro by:
+- sudo xargs -a <file name> apt install
+
+* apt edit-sources   -edit source.list files
+
+* You can add repo for backport :
+ sudo apt-get install -t buster-backports <packagename>
+
+# FOR SCRIPTS: use 
+apt-get install, etc
+
+# Currently the apt binary supports the following commands:
+
+apt:
+
+ list: 
+ which is similar to dpkg list and can be used with flags like
+   --installed or --upgradable.
+
+ search:
+  works just like apt-cache search but sorted alphabetically.
+
+ show:
+  works like apt-cache show but hide some details that people are
+  less likely to care about (like the hashes). The full record is still
+  available via apt-cache show of course.
+
+ update:
+  like the regular apt-get update with color output enabled, but
+  apt update also shows the number of upgradeable packages (if any).
+
+ install,remove:
+  adds progress output during the dpkg run.
+
+ upgrade:
+  the same as apt-get upgrade --with-new-pkgs.*
+
+ full-upgrade:
+  a more meaningful name for dist-upgrade.
+
+ edit-sources:
+  edit sources.list using $EDITOR.
+
+ policy:
+  works just like apt-cache policy
+
+# You can enable/disable the install progress [bar] via:
+ echo 'Dpkg::Progress-Fancy "1";' > /etc/apt/apt.conf.d/99progressbar
+
+*****************************************

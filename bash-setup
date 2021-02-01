@@ -1,0 +1,24 @@
+#!/bin/bash
+
+#	to set up some ~/.bashrc tweaks
+
+cd ~
+
+#install starship
+curl -fsSL https://starship.rs/install.sh | bash
+
+cd mx-kde
+
+#cat file_a >> file_b
+cat conf/bash-add >> $HOME/.bashrc
+
+rsync -av conf/.balias $HOME/
+rsync -av conf/.bash_functions $HOME/
+rsync -av conf/starship.toml $HOME/.config/
+
+tput setaf 14
+echo "-----------------------"
+echo "   Bashrc add done.    "
+echo "---------------------- "
+tput sgr0
+

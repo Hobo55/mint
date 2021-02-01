@@ -1,0 +1,14 @@
+{
+    "autoindent": false,
+    "colorscheme": "material-tc",
+    "difgutter": true,
+    "pluginchannels": [
+        "https://raw.githubusercontent.com/micro-editor/plugin-channel/master/channel.json"
+    ],
+    "pluginrepos": [],
+    "rmtrailingsws": true,
+    "statusformatl": " $(filename) $(modified)  $(status.branch) | $(opt:fileformat) | $(opt:filetype) |  ($(line)/$(col))",
+    "statusformatr": " $(bind:ToggleHelp)- Help ,  $(bind:ToggleKeyMenu)- Menu ",
+    "tabstospaces": true,
+    "xterm": true
+}
